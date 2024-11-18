@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fridge_finds_final/Menu.dart';
 
-class HomePage extends StatelessWidget {
+class Userprofile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,45 +18,46 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(width: 10),
-            Text('Home Page'),
+            Text('User Profile'),
           ],
         ),
       ),
       drawer: Menu(),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
               children: [
-                Text(
-                  'You have # expired ingredients!',
-                  style: TextStyle(fontSize: 18),
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage('assets/profile_picture.jpg'),
                 ),
-                SizedBox(width: 8),
+                SizedBox(height: 16),
                 Text(
-                  'View',
-                  style: TextStyle(
-                    fontSize: 18,
-                    decoration: TextDecoration.underline,
-                  ),
+                  'Username',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'email@example.com',
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () {
+
+                  },
+                  child: Text('Edit Profile'),
                 ),
               ],
             ),
           ),
           Expanded(
             child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                    },
-                    child: Text('Explore Recipe'),
-                  ),
-                ],
+              child: Text(
+                'User Profile Content Here',
+                style: TextStyle(fontSize: 18),
               ),
             ),
           ),
