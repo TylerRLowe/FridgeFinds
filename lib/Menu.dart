@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'ShoppingList_Page/shoppingList.dart';
 import 'Home_Page/HomePage.dart';
 import 'UserProfile/UserProfile.dart';
-import 'Pantry/pantry.dart';
-import 'ExpiredRecipes/ExpiredRecipes.dart';
+import 'ExpiredRecipe//pantry.dart';
 import 'SavedRecipes/SavedRecipes.dart';
 import 'MealPlanner/MealPlanner.dart';
+import 'ExploreRecipe/exploreRecipe.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -77,7 +77,7 @@ class Menu extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Pantry'),
+            title: Text('Explore Recipe'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
               Navigator.pushReplacement(

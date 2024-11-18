@@ -18,7 +18,7 @@ class ExpiredRecipes extends StatelessWidget {
               ),
             ),
             SizedBox(width: 10),
-            Text(' MealPlanner'),
+            Text('ExploreRecipe'),
           ],
         ),
       ),
