@@ -1,20 +1,41 @@
 import 'package:flutter/material.dart';
+import '../view_models/fridge_view_model.dart';
 
-class edit_list extends StatelessWidget {
+class EditList extends StatelessWidget {
+  final int ingredientId;
+  final FridgeViewModel fridgeViewModel;
+
+  EditList({required this.ingredientId, required this.fridgeViewModel});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            SizedBox(width: 10),
-            Text('Edit Shopping List'),
-          ],
-        ),
+        title: Text('Edit Ingredient'),
       ),
-      body: Center(
-        child: Text('This is the shopping list page'),
+      body: Column(
+        children: [
+          ListTile(
+            title: Text('Ingredient $ingredientId'),
+            trailing: IconButton(
+              icon: Icon(Icons.remove_circle_outline),
+              onPressed: () {
+                fridgeViewModel.removeIngredientNeed(ingredientId);
+                Navigator.pop(context);
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                fridgeViewModel.addIngredientNeed(ingredientId); // Add back the ingredient
+                Navigator.pop(context);
+              },
+              child: Text('Add to Shopping List'),
+            ),
+          ),
+        ],
       ),
     );
   }

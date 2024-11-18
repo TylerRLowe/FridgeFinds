@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'ShoppingList_Page/shoppingList.dart';
 import 'Home_Page/HomePage.dart';
 import 'UserProfile/UserProfile.dart';
+import 'Pantry/pantry.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -25,11 +26,11 @@ class Menu extends StatelessWidget {
           ListTile(
             title: Text('Home Page'),
             onTap: () {
-            Navigator.pop(context);
-            Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => HomePage()),
-            );
+              Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomePage()),
+              );
             },
           ),
           ListTile(
@@ -64,6 +65,10 @@ class Menu extends StatelessWidget {
             title: Text('Pantry'),
             onTap: () {
               Navigator.pop(context);
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Pantry()),
+              );
             },
           ),
           ListTile(

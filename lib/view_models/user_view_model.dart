@@ -42,10 +42,16 @@ class UserViewModel extends ChangeNotifier {
   bool validatePassword(String username, String password) {
     return username == _user.username && password == _user.password;
   }
+
+  bool validateLogin(String email, String password) {
+    return email == _user.username && password == _user.password;
+  }
+
   ///return: username
   String getUsername(){
     return _user.username;
   }
+
   ///input: the key and value for the setting you want to update
   void updateSetting(String key, dynamic value) {
     _user.settings[key] = value;

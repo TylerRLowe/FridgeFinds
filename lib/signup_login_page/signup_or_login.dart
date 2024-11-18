@@ -2,10 +2,14 @@ import 'package:flutter/material.dart';
 import 'signup.dart';
 import 'login.dart';
 import 'forget_password.dart';
+import 'package:fridge_finds_final/models/user_model.dart';
+import '../view_models/user_view_model.dart';
 
 class SignupOrLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    UserViewModel userViewModel = UserViewModel(UserModel());
+
     return Scaffold(
       appBar: AppBar(
         title: Text('FridgeFinds'),
@@ -18,7 +22,9 @@ class SignupOrLogin extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SignupPage()),
+                  MaterialPageRoute(
+                    builder: (context) => SignupPage(userViewModel: userViewModel),
+                  ),
                 );
               },
               child: const Text('Sign Up'),
@@ -28,7 +34,9 @@ class SignupOrLogin extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginPage()),
+                  MaterialPageRoute(
+                      builder: (context) => LoginPage(userViewModel: userViewModel),
+                  ),
                 );
               },
               child: const Text('Login'),
