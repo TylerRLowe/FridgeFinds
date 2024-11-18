@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Home_Page/HomePage.dart';
 
 class SignupPage extends StatelessWidget {
   @override
@@ -39,29 +40,27 @@ class SignupPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
-
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
               },
               child: const Text('Sign Up'),
             ),
             const SizedBox(height: 20),
-
             const Text(
               'Sign up with',
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 10),
-
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-
                 IconButton(
                   icon: Icon(Icons.account_circle, color: Colors.red),
                   onPressed: () {
-
                   },
                 ),
-
                 IconButton(
                   icon: Icon(Icons.facebook, color: Colors.blue),
                   onPressed: () {
@@ -70,13 +69,11 @@ class SignupPage extends StatelessWidget {
                 IconButton(
                   icon: Icon(Icons.apple, color: Colors.black),
                   onPressed: () {
-
                   },
                 ),
                 IconButton(
                   icon: Icon(Icons.computer, color: Colors.grey),
                   onPressed: () {
-
                   },
                 ),
               ],
