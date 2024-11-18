@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../Home_Page/HomePage.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -32,6 +33,10 @@ class LoginPage extends StatelessWidget {
             const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
               },
               child: const Text('Log In'),
             ),
