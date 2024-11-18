@@ -3,6 +3,9 @@ import 'ShoppingList_Page/shoppingList.dart';
 import 'Home_Page/HomePage.dart';
 import 'UserProfile/UserProfile.dart';
 import 'Pantry/pantry.dart';
+import 'ExpiredRecipes/ExpiredRecipes.dart';
+import 'SavedRecipes/SavedRecipes.dart';
+import 'MealPlanner/MealPlanner.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -26,8 +29,8 @@ class Menu extends StatelessWidget {
           ListTile(
             title: Text('Home Page'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
+              Navigator.pop(context); // Close the drawer
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => HomePage()),
               );
@@ -36,26 +39,38 @@ class Menu extends StatelessWidget {
           ListTile(
             title: Text('Saved Recipes'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pop(context); // Close the drawer
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => SavedRecipes()),
+              );
             },
           ),
           ListTile(
             title: Text('Meal Planner'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pop(context); // Close the drawer
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MealPlanner()),
+              );
             },
           ),
           ListTile(
             title: Text('Expired Recipes'),
             onTap: () {
-              Navigator.pop(context);
+              Navigator.pop(context); // Close the drawer
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => ExpiredRecipes()),
+              );
             },
           ),
           ListTile(
             title: Text('Shopping List'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
+              Navigator.pop(context); // Close the drawer
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => ShoppingList()),
               );
@@ -64,8 +79,8 @@ class Menu extends StatelessWidget {
           ListTile(
             title: Text('Pantry'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
+              Navigator.pop(context); // Close the drawer
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => Pantry()),
               );
@@ -74,8 +89,8 @@ class Menu extends StatelessWidget {
           ListTile(
             title: Text('Profile'),
             onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
+              Navigator.pop(context); // Close the drawer
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => Userprofile()),
               );

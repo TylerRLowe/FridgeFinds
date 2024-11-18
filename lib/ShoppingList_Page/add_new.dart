@@ -1,37 +1,64 @@
 import 'package:flutter/material.dart';
-import '../view_models/recipe_list_view_model.dart';
-import '../view_models/fridge_view_model.dart';
-import '../view_models/recipe_view_model.dart';
+import 'package:fridge_finds_final/view_models/fridge_view_model.dart';
 
-class AddNewList extends StatelessWidget {
-  final RecipeListViewModel recipeListViewModel;
-  final FridgeViewModel fridgeViewModel = FridgeViewModel();
+class AddNewList extends StatefulWidget {
+  final FridgeViewModel fridgeViewModel;
 
-  AddNewList({required this.recipeListViewModel});
+  AddNewList({Key? key, required this.fridgeViewModel}) : super(key: key);
+
+  @override
+  _AddNewListState createState() => _AddNewListState();
+}
+
+class _AddNewListState extends State<AddNewList> {
+  final TextEditingController _ingredientController = TextEditingController();
+  String _ingredientName = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Add New Shopping List'),
+        title: Row(
+          children: [
+            SizedBox(width: 10),
+            Text('Add New Shopping List'),
+          ],
+        ),
       ),
-      body: ListView.builder(
-        itemCount: recipeListViewModel.getAvailable().length,
-        itemBuilder: (context, index) {
-          final ingredientId = recipeListViewModel.getAvailable()[index];
-          return CheckboxListTile(
-            title: Text('Ingredient $ingredientId'),
-            value: fridgeViewModel.getListNeed()?.contains(ingredientId) ?? false,
-            onChanged: (bool? value) {
-              if (value == true) {
-                fridgeViewModel.addIngredientNeed(ingredientId);
-              } else {
-                fridgeViewModel.removeIngredientNeed(ingredientId);
-              }
-            },
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: _ingredientController,
+              decoration: InputDecoration(
+                labelText: 'Enter Ingredient',
+                border: OutlineInputBorder(),
+              ),
+              onChanged: (value) {
+                setState(() {
+                  _ingredientName = value;
+                });
+              },
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: _ingredientName.isNotEmpty ? _addIngredient : null,
+              child: Text('Add Ingredient'),
+            ),
+          ],
+        ),
       ),
     );
+  }
+
+  void _addIngredient() {
+    // Create a new ingredient object and add it to the fridge view model
+    if (_ingredientName.isNotEmpty) {
+      widget.fridgeViewModel.addIngredient(_ingredientName);
+
+      // After adding the ingredient, navigate back to the shopping list
+      Navigator.pop(context);
+    }
   }
 }
