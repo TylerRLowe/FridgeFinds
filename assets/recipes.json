@@ -1,0 +1,90 @@
+{
+  "ingredients": [
+    {
+      "id": 1,
+      "name": "Tomato",
+      "quantity": 5,
+      "nutrition": {
+        "calories": 18,
+        "carbs": 3.9,
+        "protein": 0.9,
+        "fat": 0.2
+      },
+      "expiry_date": "2024-11-25"
+    },
+    {
+      "id": 2,
+      "name": "Chicken Breast",
+      "quantity": 2,
+      "nutrition": {
+        "calories": 165,
+        "carbs": 0,
+        "protein": 31,
+        "fat": 3.6
+      },
+      "expiry_date": "2024-11-20"
+    },
+    {
+      "id": 3,
+      "name": "Pasta",
+      "quantity": 500,
+      "nutrition": {
+        "calories": 200,
+        "carbs": 42,
+        "protein": 7,
+        "fat": 1
+      },
+      "expiry_date": "2025-01-01"
+    },
+    {
+      "id": 4,
+      "name": "Garlic",
+      "quantity": 10,
+      "nutrition": {
+        "calories": 149,
+        "carbs": 33,
+        "protein": 6.4,
+        "fat": 0.5
+      },
+      "expiry_date": "2025-03-01"
+    }
+  ],
+  "recipes": [
+    {
+      "recipe_id": 1,
+      "recipe_text": "Chicken Alfredo Pasta",
+      "image": "https://example.com/chicken_alfredo.jpg",
+      "ingredients": [2, 3, 4],
+      "nutrition_facts": {
+        "calories": 530,
+        "carbs": 45,
+        "protein": 35,
+        "fat": 12
+      }
+    },
+    {
+      "recipe_id": 2,
+      "recipe_text": "Tomato Garlic Soup",
+      "image": "https://example.com/tomato_soup.jpg",
+      "ingredients": [1, 4],
+      "nutrition_facts": {
+        "calories": 80,
+        "carbs": 12,
+        "protein": 3,
+        "fat": 0.5
+      }
+    },
+    {
+      "recipe_id": 3,
+      "recipe_text": "Garlic Pasta",
+      "image": "https://example.com/garlic_pasta.jpg",
+      "ingredients": [3, 4],
+      "nutrition_facts": {
+        "calories": 300,
+        "carbs": 42,
+        "protein": 7,
+        "fat": 2
+      }
+    }
+  ]
+}

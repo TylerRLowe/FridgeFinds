@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'ShoppingList_Page/shoppingList.dart';
 import 'Home_Page/HomePage.dart';
 import 'UserProfile/UserProfile.dart';
-import 'ExpiredRecipe//pantry.dart';
 import 'SavedRecipes/SavedRecipes.dart';
 import 'MealPlanner/MealPlanner.dart';
 import 'ExploreRecipe/exploreRecipe.dart';
+import 'Fridge/pantry.dart';
 
 class Menu extends StatelessWidget {
   @override
@@ -57,12 +57,12 @@ class Menu extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Expired Recipes'),
+            title: Text('Fridge'),
             onTap: () {
               Navigator.pop(context); // Close the drawer
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => ExpiredRecipes()),
+                MaterialPageRoute(builder: (context) => Pantry()),
               );
             },
           ),
@@ -82,7 +82,7 @@ class Menu extends StatelessWidget {
               Navigator.pop(context); // Close the drawer
               Navigator.pushReplacement(
                 context,
-                MaterialPageRoute(builder: (context) => Pantry()),
+                MaterialPageRoute(builder: (context) => ExploreRecipes()),
               );
             },
           ),

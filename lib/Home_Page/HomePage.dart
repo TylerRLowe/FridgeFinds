@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fridge_finds_final/Menu.dart';
+import '../ExploreRecipe/ExploreRecipe.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -53,8 +54,12 @@ class HomePage extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => ExploreRecipes()),
+                      );
                     },
-                    child: Text('Explore Recipe'),
+                    child: Text('Explore Recipes'),
                   ),
                 ],
               ),

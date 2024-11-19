@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 
-class add_new_list extends StatelessWidget {
+class AddNewPage extends StatelessWidget {
+  final String recipeName;
+  final String recipeIngredients;
+
+  AddNewPage({this.recipeName = '', this.recipeIngredients = ''}); // Making them optional
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            SizedBox(width: 10),
-            Text('Add New Shopping List'),
-          ],
-        ),
+        title: Text('Add New Recipe'),
       ),
       body: Center(
-        child: Text('This is the Add New Shopping List page'),
+        child: Column(
+          children: [
+            Text('Recipe Name: $recipeName'),
+            Text('Ingredients: $recipeIngredients'),
+          ],
+        ),
       ),
     );
   }

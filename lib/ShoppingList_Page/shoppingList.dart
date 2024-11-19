@@ -36,7 +36,7 @@ class ShoppingList extends StatelessWidget {
 
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => add_new_list()),
+                  MaterialPageRoute(builder: (context) => AddNewPage()),
                 );
               },
               child: Text(
