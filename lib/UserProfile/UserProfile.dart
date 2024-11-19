@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fridge_finds_final/Menu.dart';
+import 'setting.dart';
 
 class Userprofile extends StatelessWidget {
   @override
@@ -46,7 +47,10 @@ class Userprofile extends StatelessWidget {
                 SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
-
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Settings()),
+                    );
                   },
                   child: Text('Edit Profile'),
                 ),
@@ -56,7 +60,7 @@ class Userprofile extends StatelessWidget {
           Expanded(
             child: Center(
               child: Text(
-                'User Profile Content Here',
+                '',
                 style: TextStyle(fontSize: 18),
               ),
             ),
