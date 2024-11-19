@@ -29,7 +29,7 @@ class EditList extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: ElevatedButton(
               onPressed: () {
-                fridgeViewModel.addIngredientNeed(ingredientId); // Add back the ingredient
+                fridgeViewModel.addIngredientNeed(ingredientId);
                 Navigator.pop(context);
               },
               child: Text('Add to Shopping List'),

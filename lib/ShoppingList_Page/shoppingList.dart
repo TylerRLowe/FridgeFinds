@@ -5,6 +5,8 @@ import 'edit_list.dart';
 import '../view_models/fridge_view_model.dart';
 import '../view_models/recipe_list_view_model.dart';
 
+List<Map<String, dynamic>> shoppingList = [];
+
 class ShoppingList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,6 @@ class ShoppingList extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: TextButton(
               onPressed: () {
-
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => AddNewPage()),
@@ -46,8 +47,36 @@ class ShoppingList extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Center(
-
+            child: ListView.builder(
+              itemCount: shoppingList.length,
+              itemBuilder: (context, index) {
+                final item = shoppingList[index];
+                return ListTile(
+                  leading: Checkbox(
+                    value: item['checked'] ?? false,
+                    onChanged: (bool? value) {
+                      shoppingList[index]['checked'] = value ?? false;
+                      (context as Element).markNeedsBuild();
+                    },
+                  ),
+                  title: Text(
+                    item['ingredient']!,
+                    style: TextStyle(
+                      decoration: (item['checked'] ?? false)
+                          ? TextDecoration.lineThrough
+                          : TextDecoration.none,
+                    ),
+                  ),
+                  subtitle: Text(item['recipeName']!),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      shoppingList.removeAt(index);
+                      (context as Element).markNeedsBuild();
+                    },
+                  ),
+                );
+              },
             ),
           ),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../ShoppingList_Page/shoppingList.dart';
 
 class RecipeCard extends StatelessWidget {
   final Map<String, String> recipeData;
@@ -7,6 +8,8 @@ class RecipeCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<String> ingredientsList = recipeData['ingredients']!.split(',');
+
     return Scaffold(
       appBar: AppBar(
         title: Text(recipeData['name']!),
@@ -14,8 +17,9 @@ class RecipeCard extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(recipeData['image']!), // Recipe image
+            Image.asset(recipeData['image']!),
             SizedBox(height: 10),
             Text(
               recipeData['name']!,
@@ -31,7 +35,42 @@ class RecipeCard extends StatelessWidget {
               'Ingredients:',
               style: Theme.of(context).textTheme.titleMedium,
             ),
-            Text(recipeData['ingredients']!),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: ingredientsList.map((ingredient) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          '- ${ingredient.trim()}',
+                          style: Theme.of(context).textTheme.bodyMedium,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          shoppingList.add({
+                            'recipeName': recipeData['name']!,
+                            'ingredient': ingredient.trim(),
+                          });
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('$ingredient added to shopping list!'),
+                            ),
+                          );
+                        },
+                        child: Text(
+                          '+ Add to Shopping List',
+                          style: TextStyle(color: Theme.of(context).primaryColor),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }).toList(),
+            ),
             SizedBox(height: 10),
             Text(
               'Instructions:',

@@ -4,7 +4,7 @@ class AddNewPage extends StatelessWidget {
   final String recipeName;
   final String recipeIngredients;
 
-  AddNewPage({this.recipeName = '', this.recipeIngredients = ''}); // Making them optional
+  AddNewPage({this.recipeName = '', this.recipeIngredients = ''});
 
   @override
   Widget build(BuildContext context) {
