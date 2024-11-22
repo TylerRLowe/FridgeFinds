@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fridge_finds_final/Menu.dart';
-import '../ExploreRecipe/ExploreRecipe.dart';
+import '../ExploreRecipe/exploreRecipe.dart';
+import '../Fridge/pantry.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -37,11 +38,26 @@ class HomePage extends StatelessWidget {
                   style: TextStyle(fontSize: 18),
                 ),
                 SizedBox(width: 8),
-                Text(
-                  'View',
-                  style: TextStyle(
-                    fontSize: 18,
-                    decoration: TextDecoration.underline,
+                // Text(
+                //   'View',
+                //   style: TextStyle(
+                //     fontSize: 18,
+                //     decoration: TextDecoration.underline,
+                //   ),
+                // ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Pantry()),
+                    );
+                    },
+                  child: Text(
+                    'View',
+                    style: TextStyle(
+                      fontSize: 18,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
                 ),
               ],
