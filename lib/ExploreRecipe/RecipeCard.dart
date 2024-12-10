@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../SavedRecipes/SavedRecipes.dart';
 import '../ShoppingList_Page/shoppingList.dart';
 
 class RecipeCard extends StatelessWidget {
@@ -9,6 +10,26 @@ class RecipeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<String> ingredientsList = recipeData['ingredients']!.split(',');
+
+    void _showPopup(BuildContext context) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Recipe Saved'),
+            content: Text('Recipe has been added to Saved Recipes.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: Text('Close'),
+              ),
+            ],
+          );
+        },
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -21,9 +42,24 @@ class RecipeCard extends StatelessWidget {
           children: [
             Image.asset(recipeData['image']!),
             SizedBox(height: 10),
-            Text(
-              recipeData['name']!,
-              style: Theme.of(context).textTheme.headlineMedium,
+            Row(
+              children: [
+                Text(
+                  recipeData['name']!,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+                Spacer(), Spacer(),
+                ElevatedButton(
+                  onPressed: () {
+                    _showPopup(context);
+                    savedRecipes.add({ //TODO
+                      'recipeName': recipeData['name']!,
+                      //'description': recipeData['description']!
+                    });
+                  },
+                  child: Text('Save Recipe'),
+                ),
+              ],
             ),
             SizedBox(height: 10),
             Text(
