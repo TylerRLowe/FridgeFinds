@@ -23,4 +23,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
-    - assets/recipes.json
+    - lib/image/spaghetti_carbonara.jpg
+    - lib/image/chicken_alfredo.jpg
+    - lib/image/vegetarian_tacos.jpg
+    - lib/image/beef_stew.jpg
+    - lib/image/chicken_curry.jpg
+    - lib/image/veggie_stir_fry.jpg
+

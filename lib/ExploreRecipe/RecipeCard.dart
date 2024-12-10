@@ -35,85 +35,86 @@ class RecipeCard extends StatelessWidget {
       appBar: AppBar(
         title: Text(recipeData['name']!),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(recipeData['image']!),
-            SizedBox(height: 10),
-            Row(
-              children: [
-                Text(
-                  recipeData['name']!,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                ),
-                Spacer(), Spacer(),
-                ElevatedButton(
-                  onPressed: () {
-                    _showPopup(context);
-                    savedRecipes.add({ //TODO
-                      'recipeName': recipeData['name']!,
-                      //'description': recipeData['description']!
-                    });
-                  },
-                  child: Text('Save Recipe'),
-                ),
-              ],
-            ),
-            SizedBox(height: 10),
-            Text(
-              recipeData['description']!,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Ingredients:',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: ingredientsList.map((ingredient) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 2.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          '- ${ingredient.trim()}',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          shoppingList.add({
-                            'recipeName': recipeData['name']!,
-                            'ingredient': ingredient.trim(),
-                          });
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text('$ingredient added to shopping list!'),
-                            ),
-                          );
-                        },
-                        child: Text(
-                          '+ Add to Shopping List',
-                          style: TextStyle(color: Theme.of(context).primaryColor),
-                        ),
-                      ),
-                    ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(recipeData['image']!),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Text(
+                    recipeData['name']!,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                );
-              }).toList(),
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Instructions:',
-              style: Theme.of(context).textTheme.titleMedium,
-            ),
-            Text(recipeData['instructions']!),
-          ],
+                  Spacer(),
+                  ElevatedButton(
+                    onPressed: () {
+                      _showPopup(context);
+                      savedRecipes.add({
+                        'recipeName': recipeData['name']!,
+                      });
+                    },
+                    child: Text('Save Recipe'),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Text(
+                recipeData['description']!,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Ingredients:',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: ingredientsList.map((ingredient) {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 2.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '- ${ingredient.trim()}',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            shoppingList.add({
+                              'recipeName': recipeData['name']!,
+                              'ingredient': ingredient.trim(),
+                            });
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text('$ingredient added to shopping list!'),
+                              ),
+                            );
+                          },
+                          child: Text(
+                            '+ Add to Shopping List',
+                            style: TextStyle(color: Theme.of(context).primaryColor),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                }).toList(),
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Instructions:',
+                style: Theme.of(context).textTheme.titleMedium,
+              ),
+              Text(recipeData['instructions']!),
+            ],
+          ),
         ),
       ),
     );
