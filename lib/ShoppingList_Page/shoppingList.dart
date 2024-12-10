@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:fridge_finds_final/Menu.dart';
 import 'add_new.dart';
-import 'edit_list.dart';
-import '../view_models/fridge_view_model.dart';
-import '../view_models/recipe_list_view_model.dart';
+import 'package:fridge_finds_final/Menu.dart';
 
 List<Map<String, dynamic>> shoppingList = [];
 
-class ShoppingList extends StatelessWidget {
+class ShoppingList extends StatefulWidget {
+  @override
+  _ShoppingListState createState() => _ShoppingListState();
+}
+
+class _ShoppingListState extends State<ShoppingList> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,11 +36,21 @@ class ShoppingList extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextButton(
-              onPressed: () {
-                Navigator.push(
+              onPressed: () async {
+                final newRecipe = await Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => AddNewPage()),
                 );
+
+                if (newRecipe != null) {
+                  setState(() {
+                    shoppingList.add({
+                      'recipeName': newRecipe['recipeName'],
+                      'ingredient': newRecipe['ingredient'],
+                      'checked': false,
+                    });
+                  });
+                }
               },
               child: Text(
                 '+ Add new list',
@@ -53,10 +65,11 @@ class ShoppingList extends StatelessWidget {
                 final item = shoppingList[index];
                 return ListTile(
                   leading: Checkbox(
-                    value: item['checked'] ?? false,
+                    value: item['checked'],
                     onChanged: (bool? value) {
-                      shoppingList[index]['checked'] = value ?? false;
-                      (context as Element).markNeedsBuild();
+                      setState(() {
+                        shoppingList[index]['checked'] = value ?? false;
+                      });
                     },
                   ),
                   title: Text(
@@ -71,8 +84,9 @@ class ShoppingList extends StatelessWidget {
                   trailing: IconButton(
                     icon: Icon(Icons.delete),
                     onPressed: () {
-                      shoppingList.removeAt(index);
-                      (context as Element).markNeedsBuild();
+                      setState(() {
+                        shoppingList.removeAt(index);
+                      });
                     },
                   ),
                 );
