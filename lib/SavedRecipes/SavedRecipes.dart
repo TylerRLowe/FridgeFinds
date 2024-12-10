@@ -1,7 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:fridge_finds_final/Menu.dart';
+import '../view_models/fridge_view_model.dart';
+import '../view_models/recipe_list_view_model.dart';
 
-class SavedRecipes extends StatelessWidget {
+List<Map<String, dynamic>> savedRecipes = [];
+
+class SavedRecipes extends StatefulWidget {
+  @override
+  _SavedRecipesState createState() => _SavedRecipesState();
+}
+class _SavedRecipesState extends State<SavedRecipes> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,8 +32,42 @@ class SavedRecipes extends StatelessWidget {
         ),
       ),
       drawer: Menu(),
-      body: Center(
-        child: Text('Your saved recipes will appear here.'),
+      body:
+      Center(
+
+          //Text('Your saved recipes will appear here.'),
+
+
+            child: ListView.builder(
+              itemCount: savedRecipes.length,
+              itemBuilder: (context, index) {
+                final item = savedRecipes[index];
+                return ListTile(
+                  // leading: Checkbox(
+                  //   value: item['checked'] ?? false,
+                  //   onChanged: (bool? value) {
+                  //     savedRecipes[index]['checked'] = value ?? false;
+                  //     (context as Element).markNeedsBuild();
+                  //   },
+                  // ),
+                  title: Text(
+                    item['recipeName'] ?? 'Unknown Recipe',
+                  ),
+                  //subtitle: Text(item['description']!),
+                  trailing: IconButton(
+                    icon: Icon(Icons.delete),
+                    onPressed: () {
+                      setState(() {
+                        savedRecipes.removeAt(index);
+                        //(context as Element).markNeedsBuild();
+                      });
+                    },
+                  ),
+                );
+              },
+            ),
+
+
       ),
     );
   }
