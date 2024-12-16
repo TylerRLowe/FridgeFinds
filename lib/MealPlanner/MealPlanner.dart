@@ -82,7 +82,7 @@ class DailyView extends StatelessWidget {
 }
 
 class WeeklyView extends StatelessWidget {
-  final List<String> days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  final List<String> days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   @override
   Widget build(BuildContext context) {
