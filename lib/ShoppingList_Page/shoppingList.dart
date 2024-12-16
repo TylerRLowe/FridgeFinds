@@ -65,7 +65,7 @@ class _ShoppingListState extends State<ShoppingList> {
                 final item = shoppingList[index];
                 return ListTile(
                   leading: Checkbox(
-                    value: item['checked'],
+                    value: item['checked'] ?? false,
                     onChanged: (bool? value) {
                       setState(() {
                         shoppingList[index]['checked'] = value ?? false;
