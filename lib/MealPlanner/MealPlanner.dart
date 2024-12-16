@@ -3,7 +3,14 @@ import 'package:fridge_finds_final/Menu.dart';
 
 import '../SavedRecipes/SavedRecipes.dart';
 
-class MealPlanner extends StatelessWidget {
+class MealPlanner extends StatefulWidget {
+  @override
+  _MealPlannerState createState() => _MealPlannerState();
+}
+
+class _MealPlannerState extends State<MealPlanner> {
+  String _selectedView = 'Daily View';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,21 +30,70 @@ class MealPlanner extends StatelessWidget {
             Text('Meal Planner'),
           ],
         ),
+        actions: [
+          _buildViewSwitcher(),
+        ],
       ),
       drawer: Menu(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            HeadingSection(title: 'Breakfast'),
-            SizedBox(height: 20),
-            HeadingSection(title: 'Lunch'),
-            SizedBox(height: 20),
-            HeadingSection(title: 'Dinner'),
-          ]
-        )
-      )
+        child: _selectedView == 'Daily View'
+            ? DailyView()
+            : WeeklyView(),
+      ),
+    );
+  }
+
+  Widget _buildViewSwitcher() {
+    return DropdownButton<String>(
+      value: _selectedView,
+      dropdownColor: Colors.white,
+      underline: SizedBox(),
+      onChanged: (String? newValue) {
+        setState(() {
+          _selectedView = newValue!;
+        });
+      },
+      items: ['Daily View', 'Weekly View']
+          .map<DropdownMenuItem<String>>((String view) {
+        return DropdownMenuItem<String>(
+          value: view,
+          child: Text(view, style: TextStyle(color: Colors.black)),
+        );
+      }).toList(),
+    );
+  }
+}
+
+class DailyView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        HeadingSection(title: 'Breakfast'),
+        SizedBox(height: 20),
+        HeadingSection(title: 'Lunch'),
+        SizedBox(height: 20),
+        HeadingSection(title: 'Dinner'),
+      ],
+    );
+  }
+}
+
+class WeeklyView extends StatelessWidget {
+  final List<String> days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: days.map((day) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0),
+          child: HeadingSection(title: day),
+        );
+      }).toList(),
     );
   }
 }
@@ -50,7 +106,6 @@ class HeadingSection extends StatefulWidget {
 }
 
 class _HeadingSectionState extends State<HeadingSection> {
-  String? selectedRecipe;
   List<String> items = [];
 
   @override
@@ -75,7 +130,6 @@ class _HeadingSectionState extends State<HeadingSection> {
         ),
         if (items.isNotEmpty)
           Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: items.map((item) {
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 2.0),
@@ -93,7 +147,6 @@ class _HeadingSectionState extends State<HeadingSection> {
                     ),
                   ],
                 ),
-                //child: Text('• $item'),
               );
             }).toList(),
           ),
@@ -102,19 +155,19 @@ class _HeadingSectionState extends State<HeadingSection> {
   }
 
   void _showAddItemDialog(BuildContext context) {
+    String? selectedRecipe;
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        String? selectedRecipe;
         return AlertDialog(
           title: Text('Add Meal'),
           content: DropdownButton<String>(
             value: selectedRecipe,
+            isExpanded: true,
             onChanged: (String? newRecipe) {
               setState(() {
                 selectedRecipe = newRecipe;
               });
-              //Navigator.of(context).pop();
             },
             items: savedRecipes.map<DropdownMenuItem<String>>((Map<String, dynamic> recipe) {
               return DropdownMenuItem<String>(
