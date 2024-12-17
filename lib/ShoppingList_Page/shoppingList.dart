@@ -53,7 +53,7 @@ class _ShoppingListState extends State<ShoppingList> {
                 }
               },
               child: Text(
-                '+ Add new list',
+                '+ Add new ingredients',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
